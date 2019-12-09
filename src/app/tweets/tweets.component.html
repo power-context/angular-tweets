@@ -1,0 +1,26 @@
+<div *ngIf="tweets.length > 0; else noTweets">
+  <div class="filter">
+    <input type="text" placeholder="Search..." [(ngModel)]="search">
+  </div>
+  <div *ngFor="let tweet of tweets | tweetFilter:search">
+    <div class="tweet">
+      <div class="header">
+        <h2>{{ tweet.author }}</h2>
+        <div class="date">
+          <small>{{ tweet.date }}</small>
+        </div>
+        <button class="btn btn-delete" (click)="removeTweet(tweet.key)">Delete tweet</button>
+        <button class="btn" [ngClass]="{ 'btn-green': tweet.completed }" (click)="inCompleted(tweet)">Change
+          button</button>
+      </div>
+      <div class="text">
+        {{ tweet.text }}
+      </div>
+      <div class="completed">
+        {{ tweet.completed }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTweets>No tweets now...</ng-template>

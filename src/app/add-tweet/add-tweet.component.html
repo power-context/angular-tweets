@@ -1,0 +1,24 @@
+<div class="add-tweet">
+    <input 
+        type="text" 
+        [(ngModel)]="newTweet" 
+        placeholder="Add your tweet..."
+        (keydown.enter)="addTweet()"
+        (input)="changeTweet()"
+        >
+    <button 
+    class="btn btn-add"
+    (click)="addTweet()"
+    [disabled]="!inWork"
+    >Add tweet</button>
+</div>
+
+<div *ngIf="inWork; else red">
+    0 / {{ newTweet.length }}
+</div>
+
+<ng-template #red>
+    <div class="red">
+        0 / {{ newTweet.length }}
+    </div>
+</ng-template>
